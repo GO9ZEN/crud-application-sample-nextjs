@@ -10,7 +10,7 @@ export const insertClient = async (data: any) => {
   db.pragma("journal_mode = WAL");
 
   const stmt = db.prepare(
-    "INSERT INTO clientData (firstName, lastName, email, nationality, jobRole, linkedInLink, gitHubLink, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+    "INSERT INTO clientData (firstName, lastName, email, nationality, jobRole, linkedInLink, gitHubLink, password, birthDate, contactNumber) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
   );
 
   const info = stmt.run(
@@ -21,7 +21,9 @@ export const insertClient = async (data: any) => {
     data.jobRole,
     data.linkedInLink,
     data.gitHubLink,
-    data.password
+    data.password,
+    data.birthDate,
+    data.contactNumber
   );
 
   db.close();
@@ -76,7 +78,7 @@ export const updateClient = async (clientData: any) => {
   try {
     const res = db
       .prepare(
-        "UPDATE clientData SET firstName=?, lastName=?, email=?, nationality=?, jobRole=?, linkedInLink=?, gitHubLink=?, password=? WHERE id=?"
+        "UPDATE clientData SET firstName=?, lastName=?, email=?, nationality=?, jobRole=?, linkedInLink=?, gitHubLink=?, password=?, birthDate=? WHERE id=?"
       )
       .run(
         clientData.firstName,
@@ -87,6 +89,7 @@ export const updateClient = async (clientData: any) => {
         clientData.linkedInLink,
         clientData.gitHubLink,
         clientData.password,
+        clientData.birthDate,
         clientData.id
       );
 

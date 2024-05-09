@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useEffect, useState } from "react";
-import { getClientList } from "./clientActions";
+import { getClientList } from "./client-actions";
 import { useRouter } from "next/navigation";
 
 export default function ClientList() {
@@ -30,7 +30,7 @@ export default function ClientList() {
   const handleGetId = (id: number) => {
     console.log("id is", id);
 
-    router.push("/client-list/" + id);
+    router.push("/clients/" + id);
   };
 
   return (

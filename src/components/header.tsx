@@ -22,10 +22,10 @@ export default function Header() {
         </Link>
 
         <div className="hidden md:flex gap-12 md:text-lg text-base font-semibold">
-          <Link href="/client-add">
+          <Link href="/clients/add">
             <h1>Add</h1>
           </Link>
-          <Link href="/client-list">
+          <Link href="/clients">
             <h1>View List</h1>
           </Link>
         </div>

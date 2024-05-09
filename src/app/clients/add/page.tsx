@@ -1,6 +1,6 @@
 "use client";
 
-import { ProfileForm } from "@/components/features/clientForm";
+import { ProfileForm } from "@/components/features/client/client-form";
 import { useEffect } from "react";
 
 export default function Page({ params }: { params: { id: number } }) {

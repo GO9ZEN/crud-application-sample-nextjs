@@ -40,7 +40,7 @@ import {
   getClient,
   insertClient,
   updateClient,
-} from "./clientActions";
+} from "./client-actions";
 import { useRouter } from "next/navigation";
 
 const clientFormSchema = z
@@ -53,12 +53,14 @@ const clientFormSchema = z
       message: "Username must be at least 2 characters.",
     }),
     email: z.string(),
-    contactNumber: z.string().optional().array(),
-    birthDate: z.date().optional(),
+    contactNumber: z.string().array().optional(),
+    // contactNumber: z.array(z.string().min(1)),
+    // birthDate: z.date().optional(),
+    birthDate: z.date().pipe(z.coerce.string()),
     nationality: z.string(),
     jobRole: z.string(),
-    linkedInLink: z.string().optional().nullish(),
-    gitHubLink: z.string().optional().nullish(),
+    linkedInLink: z.string().optional(),
+    gitHubLink: z.string().optional(),
     // youtubeLink: z.string(),
     password: z.string().min(5),
     confirmPassword: z.string().min(5),
@@ -230,7 +232,7 @@ export function ProfileForm({ clientid = 0 }: Clientprops) {
 
             <FormField
               control={form.control}
-              name="contactNumber.1"
+              name="contactNumber.0"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Personal Number</FormLabel>
@@ -345,7 +347,7 @@ export function ProfileForm({ clientid = 0 }: Clientprops) {
 
             <FormField
               control={form.control}
-              name="contactNumber.0"
+              name="contactNumber.1"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Home Number</FormLabel>
